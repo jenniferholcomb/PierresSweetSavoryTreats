@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresBakery.Models.Treat
+
+<h3>@Model.Name <em>DETAILS</em></h3>
+
+<p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+
