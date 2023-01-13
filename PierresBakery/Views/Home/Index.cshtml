@@ -20,8 +20,7 @@
   }
 </ul>
 
-<h3>Or! Shop by flavor.</h3>
-<h5>&emsp; <em>Choose a flavor below:</em></h5>
+<h5>&emsp; <em>Shop by flavor:</em></h5>
 @if (Model["flavors"].Length == 0)
 {
   <p><strong>Oops!</strong> Our mistake. Unfortunately, we currently aren't able to provide you a list of our flavors.</p>
@@ -32,7 +31,7 @@
     <li>@Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
   }
 </ul>
-
+<hr>
 <p>
 @Html.ActionLink("Manage Treats", "Index", "Treats")<br>
 @Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>

@@ -4,13 +4,13 @@
 
 @model PierresBakery.Models.Treat
 
-<h3>Delete Treat</h3>
-
+<h3><strong>DELETE:&ensp;</strong>@Model.Name</h3>
+<hr>
 
 @Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
 @using (Html.BeginForm())
 {
   <input type="submit" value="Delete" />
 }
-
+<br><hr>
 <p>@Html.ActionLink("Back to Treat List", "Index")</p>

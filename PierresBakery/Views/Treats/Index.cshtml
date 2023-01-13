@@ -4,11 +4,11 @@
 
 @using PierresBakery.Models
 
-<h1>AVAILABLE TODAY </h1>
+<h3><em>Treats in store today:</em></h3>
 
 @if(@Model.Count == 0)
 {
-  <h3>No treats have been added yet.</h3>
+  <h3><em>--check back in a few, we're still baking!--</em></h3>
 }
 else
 {
@@ -19,6 +19,8 @@ else
     }
   </ul>
 }
-
-<p>@Html.ActionLink("Add new treat", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<hr>
+<p>
+@Html.ActionLink("Add new treat", "Create")<br>
+@Html.ActionLink("Home", "Index", "Home")
+</p>

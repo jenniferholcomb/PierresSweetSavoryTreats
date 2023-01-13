@@ -4,13 +4,14 @@
 
 @model PierresBakery.Models.Flavor
 
-<h3>Delete Flavor</h3>
-
+<h3><strong>DELETE:&ensp;</strong>@Model.Description</h3>
+<hr>
 
 @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
+<br>
 @using (Html.BeginForm())
 {
   <input type="submit" value="Delete" />
 }
-
+<br><hr>
 <p>@Html.ActionLink("Back to Flavor List", "Index")</p>

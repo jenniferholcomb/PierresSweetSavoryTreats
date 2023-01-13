@@ -6,6 +6,7 @@
 @using PierresBakery.Models
 
 <h3>@Model.Name <em>DETAILS</em></h3>
+<hr>
 
 @if (Model.JoinEntities.Count == 0)
 {
@@ -17,13 +18,14 @@ else
   <ul>
   @foreach (FlavorTreat join in Model.JoinEntities)
   {
-    <li>@Html.ActionLink($"{@join.Flavor.Description}", "Details", new { id = join.Flavor.FlavorId })</li>
+    <li>@Html.ActionLink($"{@join.Flavor.Description}", "Details", "Flavors", new { id = join.Flavor.FlavorId })</li>
   }
   </ul>
 }
-
-<p>@Html.ActionLink("Add Flavor to Treat", "AddFlavor", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<hr>
+<p>
+@Html.ActionLink("Add Flavor to Treat", "AddFlavor", new { id = Model.TreatId })<br>
+@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })<br>
+@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })<br>
+@Html.ActionLink("Home", "Index", "Home")
+</p>
