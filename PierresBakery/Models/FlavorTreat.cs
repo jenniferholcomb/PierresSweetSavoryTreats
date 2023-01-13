@@ -1,14 +1,11 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 namespace PierresBakery.Models
 {
-  public class PierresBakeryContext : IdentityDbContext<ApplicationUser>
+  public class FlavorTreat
   {
-    public DbSet<Flavor> Flavors { get; set; }
-    public DbSet<Treat> Treats { get; set; }
-    public DbSet <FlavorTreat> FlavorTreats { get; set; }
-
-    public PierresBakeryContext(DbContextOptions options) : base(options) { }
+    public int FlavorTreatId { get; set; }
+    public int FlavorId { get; set; }
+    public Flavor Flavor { get; set; }
+    public int TreatId { get; set; }
+    public Treat Treat { get; set; }
   }
 }

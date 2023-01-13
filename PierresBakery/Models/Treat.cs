@@ -7,7 +7,7 @@ namespace PierresBakery.Models
   {
     public int TreatId { get; set; }
     public string Name { get; set; }
-    public <FlavorTreat> JoinEntities { get; }
+    public List<FlavorTreat> JoinEntities { get; }
     public ApplicationUser User { get; set; }
   }
 }
