@@ -43,7 +43,10 @@ namespace PierresBakery.Models
 
     public ActionResult Details(int id)
     {
-      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      Treat thisTreat = _db.Treats
+            .Include(treat => treat.JoinEntities)
+            .ThenInclude(join => join.Flavor)
+            .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
 
@@ -74,6 +77,27 @@ namespace PierresBakery.Models
       _db.Treats.Remove(thisTreat);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddFlavor(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Description");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult AddFlavor(Treat treat, int flavorId)
+    {
+      #nullable enable
+      FlavorTreat? joinEntity = _db.FlavorTreats.FirstOrDefault(join => (join.FlavorId == flavorId && join.TreatId == treat.TreatId));
+      #nullable disable
+      if (joinEntity == null && flavorId != 0)
+      {
+        _db.FlavorTreats.Add(new FlavorTreat() { FlavorId = flavorId, TreatId = treat.TreatId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = treat.TreatId });
     }
   }
 }

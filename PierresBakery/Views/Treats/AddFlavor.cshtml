@@ -6,4 +6,18 @@
 @using PierresBakery.Models
 @using System.Linq
 
-<h3>Add Flavors:</h3>
+<h3>Add Flavors</h3>
+
+<h5>Add a flavor to this treat: @Html.DisplayFor(model => model.Name)</h5>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.Label("Select Flavor")
+  @Html.DropDownList("FlavorId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
