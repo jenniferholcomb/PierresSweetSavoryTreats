@@ -2,9 +2,37 @@
   Layout = "_Layout";
 }
 
-@using PierresBakery.Models;
+@using PierresBakery.Models
 
 <h1>Welcome to Pierre's Sweet and Savory Bakery!</h1>
+<hr>
 
-<p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
-<p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
+<h3>We've got treats for you!</h3>
+<h5>&emsp; <em>Select one below:</em></h5>
+@if (Model["treats"].Length == 0)
+{
+  <p><strong>Oops!</strong> Our mistake. Unfortunately, we are currently out of treats.</p>
+}
+<ul>
+  @foreach (Treat treat in Model["treats"])
+  {
+    <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId})</li>
+  }
+</ul>
+
+<h3>Or! Shop by flavor.</h3>
+<h5>&emsp; <em>Choose a flavor below:</em></h5>
+@if (Model["flavors"].Length == 0)
+{
+  <p><strong>Oops!</strong> Our mistake. Unfortunately, we currently aren't able to provide you a list of our flavors.</p>
+}
+<ul>
+  @foreach (Flavor flavor in Model["flavors"])
+  {
+    <li>@Html.ActionLink(@flavor.Description, "Details", "Flavors", new { id = @flavor.FlavorId})</li>
+  }
+</ul>
+
+<p>
+@Html.ActionLink("Manage Treats", "Index", "Treats")<br>
+@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
