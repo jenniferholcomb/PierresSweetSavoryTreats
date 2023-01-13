@@ -29,12 +29,12 @@ namespace PierresBakery.Models
 
     public ActionResult Create()
     {
-  
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Flavor flavor)
+    public ActionResult Create(Flavor flavor, int TreatId)
     {
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
@@ -43,13 +43,17 @@ namespace PierresBakery.Models
 
     public ActionResult Details(int id)
     {
-      Flavor thisflavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      Flavor thisflavor = _db.Flavors
+          .Include(flavor => flavor.JoinEntities)
+          .ThenInclude(join => join.Treat)
+          .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisflavor);
     }
 
     public ActionResult Edit(int id)
     {
       Flavor thisflavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      ViewBag.Sele
       return View(thisflavor);
     }
 

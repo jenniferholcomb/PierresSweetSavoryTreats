@@ -6,6 +6,22 @@
 
 <h3>@Model.Name <em>DETAILS</em></h3>
 
+@if (Model.JoinEntities.Count == 0)
+{
+  <p>There are no flavors assigned to this treat.</p>
+}
+else
+{
+  <h5>Flavors tagged:</h5>
+  <ul>
+  @foreach (FlavorTreat join in Model.JoinEntities)
+  {
+    <li>@Html.ActionLink($"{@join.Flavor.Description}", "Details", new { id = join.Flavor.FlavorId })</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add Flavor to Treat", "AddFlavor", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
 
