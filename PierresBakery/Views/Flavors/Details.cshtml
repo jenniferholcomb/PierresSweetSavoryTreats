@@ -1,0 +1,12 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresBakery.Models.Flavor
+
+<h3>@Model.Description <em>DETAILS</em></h3>
+
+<p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

@@ -4,6 +4,8 @@
 
 @model PierresBakery.Models.Treat
 
+<h3><em>Edit</em>: @Model.Name</h3>
+
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.TreatId)
@@ -13,3 +15,6 @@
 
   <input type="submit" value="Edit" />
 }
+
+<br><p>@Html.ActionLink("Return to Details", "Details", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
