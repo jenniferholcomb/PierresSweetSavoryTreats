@@ -10,7 +10,7 @@
 
 @if(!ViewData.ModelState.IsValid)
 {
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit.")</p>
+  @Html.ValidationSummary("Please fix the following error(s) and then resubmit.")
 }
 
 @using (Html.BeginForm())
@@ -19,7 +19,7 @@
   @Html.TextBoxFor(model => model.Email)
 
   @Html.LabelFor(model => model.Password)
-  @Hmtl.EditorFor(model => model.Password)
+  @Html.EditorFor(model => model.Password)
 
   <input type="submit" value="Log in" />
 }
