@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace PierresBakery.Models
 {
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierresBakeryContext _db;
@@ -22,9 +23,20 @@ namespace PierresBakery.Models
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       return View( _db.Flavors.OrderBy(flavor => flavor.Description).ToList());
+    }
+
+    [AllowAnonymous]
+    public ActionResult Details(int id)
+    {
+      Flavor thisflavor = _db.Flavors
+          .Include(flavor => flavor.JoinEntities)
+          .ThenInclude(join => join.Treat)
+          .FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(thisflavor);
     }
 
     public ActionResult Create()
@@ -39,15 +51,6 @@ namespace PierresBakery.Models
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
-    }
-
-    public ActionResult Details(int id)
-    {
-      Flavor thisflavor = _db.Flavors
-          .Include(flavor => flavor.JoinEntities)
-          .ThenInclude(join => join.Treat)
-          .FirstOrDefault(flavor => flavor.FlavorId == id);
-      return View(thisflavor);
     }
 
     public ActionResult Edit(int id)
