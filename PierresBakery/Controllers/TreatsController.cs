@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace PierresBakery.Models
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresBakeryContext _db;
@@ -22,6 +23,7 @@ namespace PierresBakery.Models
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       return View( _db.Treats.OrderBy(treat => treat.Name).ToList());
@@ -41,6 +43,7 @@ namespace PierresBakery.Models
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Treat thisTreat = _db.Treats
