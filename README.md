@@ -25,23 +25,22 @@ This application lists all treats available at Pierre's Bakery, as well as flavo
 
 * Clone this repo to your workspace.
 * Navigate to program directory (PierresBakery)
-  * add .gitignore file to this directory
-    * add bin, obj, appsettings.json to file
-    * push this file to GitHub first
+  * Create file, .gitignore within this directory
+    1. Add bin, obj, appsettings.json to file.
+    2. Push .gitignore file to GitHub first.
 * Navigate to production directory (PierresBakery)
-  * Create a file appsettings.json
-    * Add the following to appsettings.json,
+  * Create file, appsettings.json
+    1. Add the following to appsettings.json,
     {
       "ConnectionStrings": {
         "DefaultConnection": "Server=localhost;Port=3306;database=pierres_bakery;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
       }
     }
-    * In appsettings.json, replace '[YOUR-USERNAME-HERE]' with your SQL username, and '[YOUR-PASSWORD-HERE]' with your SQL password
-* In production directory, on command line run ```dotnet restore```
-* To load application database with migrations, in production directory,
-  run ```dotnet ef database update```
-* In production directory, run ```dotnet watch run``` in command line to start project in development mode in watcher.
-* Open brower to https://localhost:5001
+    2. In appsettings.json, replace '[YOUR-USERNAME-HERE]' with your SQL username, and '[YOUR-PASSWORD-HERE]' with your SQL password.
+* In production directory, on command line run ```dotnet restore```.
+* To load application database with migrations, in production directory, run ```dotnet ef database update```.
+* In production directory, to start project in development mode in watcher, run ```dotnet watch run```.
+* Open brower to https://localhost:5001.
 
 
 ## Known Bugs
