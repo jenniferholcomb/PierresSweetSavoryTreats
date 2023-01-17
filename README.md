@@ -40,7 +40,7 @@ This application lists all treats available at Pierre's Bakery, as well as flavo
 * In production directory, on command line run ```dotnet restore```
 * To load application database with migrations, in production directory,
   run ```dotnet ef database update```
-* In prooduction directory, run ```dotnet watch run``` in command line to start project in development mode in watcher.
+* In production directory, run ```dotnet watch run``` in command line to start project in development mode in watcher.
 * Open brower to https://localhost:5001
 
 
