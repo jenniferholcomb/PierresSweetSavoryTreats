@@ -36,12 +36,24 @@ namespace PierresBakery.Models
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public async Task<ActionResult> Create(Treat treat)
     {
-      _db.Treats.Add(treat);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      treat.User = currentUser;
+
+      if (!ModelState.IsValid)
+      {
+        return View();
+      }
+      else
+      {
+        _db.Treats.Add(treat);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
+
 
     [AllowAnonymous]
     public ActionResult Details(int id)
@@ -101,6 +113,15 @@ namespace PierresBakery.Models
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = treat.TreatId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId, int id)
+    {
+      FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+      _db.FlavorTreats.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Flavors", new { id });
     }
   }
 }
